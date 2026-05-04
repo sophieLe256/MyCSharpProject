@@ -34,7 +34,7 @@ public static class DataExtensions
         //and it will provide us with a properly configured instance that we can use to interact with our database.
         //this is Dependency Injection (DI) + Data access
         var connString = builder.Configuration.GetConnectionString("GameStore");
-        builder.Services.AddSqlite<GameStoreContext>(
+        builder.Services.AddSqlServer<GameStoreContext>(
             connString,
             optionsAction: options => options.UseSeeding((context, _) =>
             {

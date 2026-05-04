@@ -6,7 +6,13 @@ using WebApplication1.Entities;
 //nó cho phép chúng ta truy vấn và lưu dữ liệu vào database
 public class GameStoreContext(DbContextOptions<GameStoreContext> options) : DbContext(options)
 {
-    //DbSet is an object that can be used to query and saven instances in this case of games and genres.
     public DbSet<Game> Games => Set<Game>();
     public DbSet<Genre> Genres => Set<Genre>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Game>()
+            .Property(g => g.Price)
+            .HasPrecision(10, 2);
+    }
 }
